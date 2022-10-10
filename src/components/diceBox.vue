@@ -3,7 +3,13 @@
     <ul>
         <li v-for="(item,index) in diceData" :key="index" 
             @click="confirmChoice(index)">
-            <span v-show="item!=0">{{item}}</span>
+            <!-- <span v-show="item!=0">{{item}}</span> -->
+            <img v-show="item==1" src="../assets/dice/dice1.png">
+            <img v-show="item==2" src="../assets/dice/dice2.png">
+            <img v-show="item==3" src="../assets/dice/dice3.png">
+            <img v-show="item==4" src="../assets/dice/dice4.png">
+            <img v-show="item==5" src="../assets/dice/dice5.png">
+            <img v-show="item==6" src="../assets/dice/dice6.png">
         </li>
     </ul>
   </div>
@@ -66,8 +72,8 @@ export default {
 
 <style lang="less" scoped>
 .diceBox{
-    width: 100%;
-    height: 280px;
+    width: 80%;
+    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -78,17 +84,21 @@ export default {
         align-items: center;
         flex-wrap: wrap;
         li{
-            width: 80px;
-            height: 80px;
+            width: 65px;
+            height: 65px;
             box-sizing: border-box;
             display: flex;
             justify-content: center;
             align-items: center;
             color: #999;
-            font-size: 30px;
-            font-weight: bold;
+            // font-size: 25px;
+            // font-weight: bold;
             border-radius: 10px;
             background-color: rgba(255,255,255,1);
+            img{
+                width: 50px;
+                height: 50px;
+            }
             margin:5px;
             &:hover{
                 box-shadow: 0 0 5px gray inset;
