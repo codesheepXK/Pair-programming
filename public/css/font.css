@@ -1,7 +1,7 @@
 @font-face {
     font-family: "iconfont";
     /* Project id 3683251 */
-    src: url('//at.alicdn.com/t/c/font_3683251_dx1ck0vycu.woff2?t=1664549991762') format('woff2'), url('//at.alicdn.com/t/c/font_3683251_dx1ck0vycu.woff?t=1664549991762') format('woff'), url('//at.alicdn.com/t/c/font_3683251_dx1ck0vycu.ttf?t=1664549991762') format('truetype');
+    src: url('//at.alicdn.com/t/c/font_3683251_tnnz4r2e1u.woff2?t=1665417641419') format('woff2'), url('//at.alicdn.com/t/c/font_3683251_tnnz4r2e1u.woff?t=1665417641419') format('woff'), url('//at.alicdn.com/t/c/font_3683251_tnnz4r2e1u.ttf?t=1665417641419') format('truetype');
 }
 
 .iconfont {
@@ -12,10 +12,30 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-touzi:before {
-    content: "\e71b";
+.icon-yinlemusic215:before {
+    content: "\e9c5";
 }
 
-.icon-toutouzi-01:before {
-    content: "\e611";
+.icon-xiaolaba:before {
+    content: "\e64c";
+}
+
+.icon-a-5Flabajingyin:before {
+    content: "\e671";
+}
+
+.icon-shibai:before {
+    content: "\e8c5";
+}
+
+.icon-fanhui5:before {
+    content: "\e601";
+}
+
+.icon-chexiao-tianchong:before {
+    content: "\e81e";
+}
+
+.icon-jieshushijian:before {
+    content: "\e630";
 }
