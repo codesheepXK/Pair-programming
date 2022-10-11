@@ -25,7 +25,7 @@ export default {
     },
     methods:{
         loginSubmit(){
-            this.$router.replace("/index")
+            this.$router.replace("/intro")
         }
     }
 }
