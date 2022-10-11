@@ -13,6 +13,12 @@ export default new VueRouter({
                 import ("../views/mainPage.vue")
         },
         {
+            path: "/intro",
+            name: "intro",
+            component: () =>
+                import ("../views/introPage.vue")
+        },
+        {
             path: "/index",
             name: "index",
             component: () =>
