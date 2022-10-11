@@ -18,7 +18,7 @@
 <script>
 import { MessageBox } from 'mint-ui';
 import {mapMutations,mapGetters,mapActions} from 'vuex';
-import Vue from 'vue'
+// import Vue from 'vue'
 export default {
     props:{
         isTurn:Boolean,
@@ -55,7 +55,7 @@ export default {
                 return;
             }
             MessageBox.confirm('确定放在这里吗?').then(()=>{
-                Vue.set(this.diceData,index,this.number);
+                // Vue.set(this.diceData,index,this.number);
                 this.updateData({pos:this.pos,index:index,data:this.number});
                 this.$nextTick(()=>{
                     this.checkOver({pos:this.pos})
