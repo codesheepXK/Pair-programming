@@ -21,7 +21,7 @@
       <i class="iconfont icon-fanhui5"></i>
       <span>返回</span>
     </div>
-    <div class="btn back">
+    <div class="btn back" @click="retData()">
       <i class="iconfont icon-chexiao-tianchong"></i>
       <span>撤销</span>
     </div>
@@ -63,7 +63,8 @@ export default {
      'calSum',
      'checkOver',
      'getNum',
-     'updateReady']),
+     'updateReady',
+     "retData"]),
      gameStart(){
         this.isBegin=true;
         this.getNum();
