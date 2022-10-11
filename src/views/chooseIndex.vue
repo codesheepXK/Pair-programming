@@ -1,6 +1,6 @@
 <template>
   <div class="indexBox">
-    <mt-button icon="back"  @click='$router.replace("/login")' class="backBtn"></mt-button>
+    <mt-button icon="back"  @click='$router.replace("/intro")' class="backBtn"></mt-button>
     <img src="../assets/choose.png">
     <div class="chooseBox">
         <mt-button 
@@ -48,19 +48,6 @@ export default {
         top: 68px;
         width: 80%;
     }
-    // &::before{
-    //     content: '';
-    //     position: absolute;
-    //     top: 0;
-    //     left: 0;
-    //     width: 100%;
-    //     height: 100%;
-    //     filter: blur(8px);
-    //     background: url("../assets/logo.jpg") no-repeat;
-    //     background-size: 100% 100%;
-    //     z-index: -1;
-    // };
-
 }
 .chooseBox{
     width: 75%;
