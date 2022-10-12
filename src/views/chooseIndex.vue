@@ -10,6 +10,9 @@
         >
             {{item.title}}
         </mt-button>
+    </div>
+    <div class="toPoint" @click='$router.replace("/list")'>
+        <span>点击查看排行榜</span>
         
     </div>
   </div>
@@ -47,6 +50,21 @@ export default {
         position: absolute;
         top: 68px;
         width: 80%;
+    }
+    .toPoint{
+        position: absolute;
+        bottom: 40px;
+        right: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 150px;
+        height: 40px;
+        color: #999;
+        font-weight: bold;
+        background-color: #fff;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
     }
 }
 .chooseBox{
