@@ -19,6 +19,12 @@ export default new VueRouter({
                 import ("../views/introPage.vue")
         },
         {
+            path: "/list",
+            name: "list",
+            component: () =>
+                import ("../views/listPage.vue")
+        },
+        {
             path: "/index",
             name: "index",
             component: () =>
