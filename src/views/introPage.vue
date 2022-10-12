@@ -59,7 +59,7 @@ export default {
         }
         p{
             color: #999;
-            font-size: 20px;
+            font-size: 18px;
             margin: 5px 0px;
         }
     }
