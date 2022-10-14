@@ -36,7 +36,6 @@
 import avatarTop from "../components/avatarTop.vue"
 import avatarBottom from "../components/avatarBottom.vue"
 import diceBox from "../components/diceBox.vue"
-// import pageBottom from "../components/pageBottom.vue"
 import {mapMutations,mapGetters} from 'vuex';
 export default {
   data(){
@@ -46,15 +45,15 @@ export default {
     }
   },
   computed:{
-    ...mapGetters('dice',["number","isTurn","ownBoard","otherBoard"]),
-    imgURL(){
-      return "../assets/dice/dice" + this.number +'.png'
-    }
+    ...mapGetters('dice',["number","isTurn","ownBoard","otherBoard","isOver","otherSum",'ownSum']),
   },
   components:{
     avatarTop,
     avatarBottom,
     diceBox,
+  },
+  mounted(){
+    this.retAll()
   },
   methods:{
      ...mapMutations('dice',[
@@ -64,7 +63,8 @@ export default {
      'checkOver',
      'getNum',
      'updateReady',
-     "retData"]),
+     "retData",
+     "retAll"]),
      gameStart(){
         this.isBegin=true;
         this.getNum();
