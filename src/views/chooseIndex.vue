@@ -5,7 +5,7 @@
     <div class="chooseBox">
         <mt-button 
             v-for="(item,index) in buttons" :key="index" 
-            @click='$router.replace("/main")'
+            @click='goBoard(index)'
             plain
         >
             {{item.title}}
@@ -19,10 +19,26 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex'
 export default {
     data(){
         return{
             buttons:[{title:"人机对战"},{title:"本地对战"},{title:"匹配对战"}]
+        }
+    },
+    computed:{
+        ...mapGetters('dice',['isAI'])
+    },
+    methods:{
+        ...mapMutations('dice',["setAI"]),
+        goBoard(index){
+            if(index==0&&this.isAI==false){
+                this.setAI()
+            }
+            else if(index!=0&&this.isAI==true){
+                this.setAI()
+            }
+            this.$router.replace('/main')
         }
     }
 }
