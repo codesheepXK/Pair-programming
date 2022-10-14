@@ -10,6 +10,11 @@ const state = {
     isTurn: true,
     isReady: false,
     isRet: false,
+    isAI: false,
+    isOver: false,
+    ownSum: 0,
+    otherSum: 0,
+    // 6, 6, 6, 6, 6, 6, 6, 6
     ownBoard: [0, 0, 0, 0, 0, 0, 0, 0, 0],
     otherBoard: [0, 0, 0, 0, 0, 0, 0, 0, 0],
     preOwnBoard: [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -19,10 +24,30 @@ const getters = {
     number: state => state.number,
     isTurn: state => state.isTurn,
     isReady: state => state.isReady,
+    isAI: state => state.isAI,
     ownBoard: state => state.ownBoard,
     otherBoard: state => state.otherBoard,
+    isOver: state => state.isOver,
+    ownSum: state => state.ownSum,
+    otherSum: state => state.otherSum
 }
 const mutations = {
+    retAll() {
+        for (let i = 0; i < 9; i++) {
+            Vue.set(state.ownBoard, i, 0)
+        }
+        for (let i = 0; i < 9; i++) {
+            Vue.set(state.otherBoard, i, 0)
+        }
+        state.number = 0,
+            state.isTurn = true,
+            state.isReady = false,
+            state.isRet = false,
+            state.isOver = false
+    },
+    setAI() {
+        state.isAI = !state.isAI;
+    },
     getNum() {
         state.number = Math.floor(Math.random() * 6) + 1
     },
@@ -42,7 +67,6 @@ const mutations = {
         state.isRet = true
     },
     updateData(state, { pos, index, data }) {
-        console.log(state.ownBoard, state.otherBoard, state.preOwnBoard, state.preOtherBoard);
         state.preNumber = state.number
         state.preOwnBoard = JSON.parse(JSON.stringify(state.ownBoard))
         state.preOtherBoard = JSON.parse(JSON.stringify(state.otherBoard))
@@ -55,7 +79,6 @@ const mutations = {
             Vue.set(state.ownBoard, index, state.number);
             arr = state.otherBoard;
         }
-        console.log(state.ownBoard, state.otherBoard);
         if (column == 0) {
             column0.forEach(item => {
                 if (arr[item] == data)
@@ -130,7 +153,10 @@ const mutations = {
                 sunOwn += j * num[j] * num[j]
             }
         }
-        MessageBox.alert(sumOther + ":" + sunOwn, "游戏结束")
+        state.isOver = true
+        state.ownSum = sunOwn;
+        state.otherSum = sumOther;
+
     },
 }
 const actions = {
@@ -154,7 +180,52 @@ const actions = {
         if (flag) {
             commit('calSum')
         }
-    }
+    },
+    updateDataAI({ commit }) {
+        let flag = 0;
+        for (let i = 0; i <= 8; i++) {
+            if (state.otherBoard[i] == state.number) {
+                if (columnArr[i] == 0) {
+                    for (let j = 0; j <= 2; j++) {
+                        if (state.otherBoard[column0[j]] == 0) {
+                            commit('updateData', { pos: 'top', index: column0[j], data: state.number })
+                            flag = 1;
+                            break
+                        }
+                    }
+                }
+                if (columnArr[i] == 1) {
+                    for (let j = 0; j <= 2; j++) {
+                        if (state.otherBoard[column1[j]] == 0) {
+                            commit('updateData', { pos: 'top', index: column1[j], data: state.number })
+                            flag = 1;
+                            break
+                        }
+                    }
+                }
+                if (columnArr[2] == 0) {
+                    for (let j = 0; j <= 2; j++) {
+                        if (state.otherBoard[column2[j]] == 0) {
+                            commit('updateData', { pos: 'top', index: column2[j], data: state.number })
+                            flag = 1;
+                            break
+                        }
+                    }
+                }
+            }
+            if (flag == 1) {
+                break
+            }
+        }
+        if (flag != 1) {
+            for (let i = 0; i <= 8; i++) {
+                if (state.otherBoard[i] == 0) {
+                    commit('updateData', { pos: 'top', index: i, data: state.number })
+                    break
+                }
+            }
+        }
+    },
 
 }
 
