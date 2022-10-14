@@ -1,7 +1,7 @@
 <template>
   <div class="avatarBox">
-    <img src="../assets/logo.jpg">
-    <span>十亿少女的梦</span>
+    <img src="../assets/avatar1.jpg">
+    <span>阿尼亚</span>
   </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
 
 <style lang="less" scoped>
 .avatarBox{
-    width: 180px;
+    width: 120px;
     height: 50px;
     display: flex;
     justify-content: center;
