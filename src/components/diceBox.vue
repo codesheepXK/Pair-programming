@@ -27,7 +27,8 @@ export default {
     },
     data(){
         return{
-            diceData:[0,0,0,0,0,0,0,0,0]
+            diceData:[0,0,0,0,0,0,0,0,0],
+            timer: null,
         }
     },
     watch: {
@@ -40,29 +41,66 @@ export default {
         }
     },
     computed:{
-        ...mapGetters('dice',['number','isReady']),
+        ...mapGetters('dice',['number','isReady','isAI',"isOver","otherSum",'ownSum']),
     },
     methods:{
-        ...mapActions('dice',['checkOver']),
+        ...mapActions('dice',['checkOver',"updateDataAI"]),
         ...mapMutations('dice',[
         "getNum",
         'updateData',
         'updateTurn',
         "updateReady",
-        'getData']),
+        'getData',
+        "retAll"]),
         confirmChoice(index){
             if(this.isReady==false||this.isTurn==false||this.diceData[index]!=0){
                 return;
             }
             MessageBox.confirm('确定放在这里吗?').then(()=>{
-                // Vue.set(this.diceData,index,this.number);
                 this.updateData({pos:this.pos,index:index,data:this.number});
-                this.$nextTick(()=>{
-                    this.checkOver({pos:this.pos})
-                    this.updateTurn()
-                    this.getNum()  
-                })
 
+                if(!this.isAI){
+                    this.$nextTick(()=>{
+                        this.checkOver({pos:this.pos})
+                        if(this.isOver){
+                            MessageBox.alert(this.otherSum + ":" + this.ownSum, "游戏结束").then(() => {
+                                this.$router.replace('/index')
+                            })
+                        }
+                        else{
+                            this.updateTurn()
+                            this.getNum()
+                        }  
+                    })
+                }
+                else{
+                    this.$nextTick(()=>{
+                        this.checkOver({pos:this.pos})
+                        if(this.isOver){
+                            MessageBox.alert(this.otherSum + ":" + this.ownSum, "游戏结束").then(() => {
+                                this.$router.replace('/index')
+                            })
+                        }
+                        else{
+                            this.getNum()
+                            this.updateTurn()
+                            clearTimeout(this.timer);
+                            this.timer = setTimeout(()=>{
+                                this.updateDataAI()
+                                this.checkOver({pos:this.pos})
+                                if(this.isOver){
+                                    MessageBox.alert(this.otherSum + ":" + this.ownSum, "游戏结束").then(() => {
+                                        this.$router.replace('/index')
+                                    })
+                                }else{
+                                    this.getNum()
+                                    this.updateTurn()
+                                }
+                            },1000);
+                        }
+                        
+                    })
+                }
             })
         }
     }
